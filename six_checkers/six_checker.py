@@ -76,7 +76,7 @@ class SixChecker(metaclass=SixCheckerMeta):
             node (ast.stmt): the ast node that caused the error.
 
         Returns:
-            SIXErrorInfo: The created error indo.
+            SIXErrorInfo: The created error info.
         """
         return SIXErrorInfo(
             node.lineno, node.col_offset, cls.error_number, cls.error_message, cls
