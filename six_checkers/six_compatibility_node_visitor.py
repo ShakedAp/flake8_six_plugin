@@ -10,6 +10,10 @@ from six_checkers.unallowed_name_checkers import (
     CoerceNotAllowedChecker,
     CoerceMethodNotAllowedChecker,
 )
+from six_checkers.constant_checkers import (
+    UnspecifiedStringPrefix,
+    FStringsNotAllowedChecker,
+)
 
 
 NODE_VISITOR_VISIT_METHOD_FORMAT = "visit_{}"
@@ -79,6 +83,8 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
             CoerceNotAllowedChecker,
         ),
         "FunctionDef": (CoerceMethodNotAllowedChecker,),
+        "Constant": (UnspecifiedStringPrefix,),
+        "JoinedStr": (FStringsNotAllowedChecker,),
     }
 
     def __init__(self):

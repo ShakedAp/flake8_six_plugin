@@ -1,5 +1,47 @@
 [flake8]
-extend-ignore = E114, E115, E116, E12, E13, E2, E3, E4, E5, E71, E72, E73, W291, W292, W293, W391, W5, F401, F405, C
+select = 
+    SIX,
+    # Indentation
+    E101,
+    E111,
+    E112,
+    E113,
+    E117,
+    W191
+    # Statement
+    E701,
+    E702,
+    E703,
+    E704,
+    E741,
+    E742,
+    E743,
+    # Runtime
+    E901,
+    E902,
+    E999,
+    # Deprecation
+    W6,
+    # Imports
+    F402,
+    F403, # reconsider
+    F404,
+    F406,
+    F407,
+    # Formatting
+    F501,
+    F521,
+    # Dictionaries
+    F601,
+    F602,
+    F632,
+    F633,
+    F812,
+    F821,
+    F822,
+    F831,
+    F901
+ignore = 
 
 [flake8:local-plugins]
 extension =
