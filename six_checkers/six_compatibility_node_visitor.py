@@ -51,7 +51,7 @@ def _add_node_checkers_to_methods(
 
 class NodeCheckerAdderMeta(type):
     """
-    A metaclass populates all of the ast Node Visitor visit functions from the defined node_checkers.
+    A metaclass that populates all of the ast Node Visitor visit functions from the defined node_checkers.
     """
 
     def __new__(cls, name, bases, dct):
