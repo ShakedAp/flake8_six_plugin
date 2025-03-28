@@ -17,6 +17,14 @@ class CallFuncionNameNotAllowedChecker(abc.ABC, SixChecker):
 
     @classmethod
     def check(cls, node: ast.Call, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.Call): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
         if isinstance(node.func, ast.Name) and node.func.id == cls.unallowed_name:
             errors.append(cls._create_six_error(node.func))
 
@@ -32,6 +40,14 @@ class FuncionDefNameNotAllowedChecker(abc.ABC, SixChecker):
 
     @classmethod
     def check(cls, node: ast.FunctionDef, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.FunctionDef): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
         if node.name == cls.unallowed_name:
             errors.append(cls._create_six_error(node))
 

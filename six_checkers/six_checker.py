@@ -55,6 +55,17 @@ class SixChecker(metaclass=SixCheckerMeta):
 
     error_message = ""
 
+    def check(cls, node: ast.stmt, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.stmt): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
+        raise NotImplementedError("Subclass Checker must implement the check method!")
+
     @classmethod
     def _create_six_error(cls, node: ast.stmt) -> SIXErrorInfo:
         """create the given error info based on the given node.
