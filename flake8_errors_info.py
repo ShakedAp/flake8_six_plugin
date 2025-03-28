@@ -4,7 +4,7 @@ from typing import NamedTuple
 
 class Flake8ASTErrorInfo(NamedTuple):
     """
-    Default Flake8 Error info.
+    Flake8 Error info.
 
     line_number is the line number that the error was detected on.
     offset is the column that the error was detected on.
