@@ -1,0 +1,8 @@
+[flake8]
+extend-ignore = E114, E115, E116, E12, E13, E2, E3, E4, E5, E71, E72, E73, W291, W292, W293, W391, W5, F401, F405, C
+
+[flake8:local-plugins]
+extension =
+    SIX = six_comaptablity_plugin:SixCompatibilityPlugin
+paths = 
+    ./
