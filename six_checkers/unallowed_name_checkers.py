@@ -7,6 +7,12 @@ from six_checkers.six_checker import SixChecker
 
 
 class CallFuncionNameNotAllowedChecker(abc.ABC, SixChecker):
+    """
+    Six Checker that checks that a given name is not called as a function.
+
+    Any inherting class needs to define the unallowed_name, as well as the error_message.
+    """
+
     unallowed_name = ""
 
     @classmethod
@@ -16,6 +22,12 @@ class CallFuncionNameNotAllowedChecker(abc.ABC, SixChecker):
 
 
 class FuncionDefNameNotAllowedChecker(abc.ABC, SixChecker):
+    """
+    Six Checker that checks that a given name is not defined as a function.
+
+    Any inherting class needs to define the unallowed_name, as well as the error_message.
+    """
+
     unallowed_name = ""
 
     @classmethod
