@@ -14,6 +14,10 @@ from six_checkers.constant_checkers import (
     UnspecifiedStringPrefix,
     FStringsNotAllowedChecker,
 )
+from six_checkers.await_async_checkers import (
+    AsyncNotAllowedChecker,
+    AwaitNotAllowedChecker,
+)
 
 
 NODE_VISITOR_VISIT_METHOD_FORMAT = "visit_{}"
@@ -85,6 +89,8 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
         "FunctionDef": (CoerceMethodNotAllowedChecker,),
         "Constant": (UnspecifiedStringPrefix,),
         "JoinedStr": (FStringsNotAllowedChecker,),
+        "Await": (AwaitNotAllowedChecker,),
+        "AsyncFunctionDef": (AsyncNotAllowedChecker,),
     }
 
     def __init__(self):

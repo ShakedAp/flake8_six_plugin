@@ -33,7 +33,7 @@ class FStringsNotAllowedChecker(SixChecker):
     Six Checker that checks that no f-strings are used.
     Example: f''.
 
-    This can be detected via the apperance of JoinedStr.
+    This can be detected via the apperance of ast.JoinedStr.
     """
 
     error_message = "f-strings are not allowed! They are not supported in python2"
