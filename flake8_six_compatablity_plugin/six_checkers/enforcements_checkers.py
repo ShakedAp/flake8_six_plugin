@@ -27,3 +27,25 @@ class OpenEncodingChecker(SixChecker):
             keyword_names = [keyword.arg for keyword in node.keywords]
             if "encoding" not in keyword_names:
                 errors.append(cls._create_six_error(node))
+
+
+class ClassInheritanceChecker(SixChecker):
+    """
+    Six Checker that checks that all of the defined classes inherit from at least one thing.
+    This is to ensure the parent is the object class.
+    """
+
+    error_message = "all classes must inherit from at least one base (use object for default)"
+
+    @classmethod
+    def check(cls, node: ast.ClassDef, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.ClassDef): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
+        if not node.bases:
+            errors.append(cls._create_six_error(node))

@@ -56,7 +56,7 @@ class EllipsisNotAllowedChecker(SixChecker):
     Six Checker that checks that no ellipsis are used.
     """
 
-    error_message = "Ellipsis is not allowed - they are not python2 compatible"
+    error_message = "Ellipses are not allowed - they are not python2 compatible"
 
     @classmethod
     def check(cls, node: ast.Constant, errors: list[SIXErrorInfo]) -> None:
