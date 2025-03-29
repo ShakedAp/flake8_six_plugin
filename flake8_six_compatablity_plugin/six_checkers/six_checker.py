@@ -3,7 +3,7 @@ import ast
 import abc
 from typing import Iterable
 
-from flake8_errors_info import SIXErrorInfo
+from flake8_six_compatablity_plugin.flake8_errors_info import SIXErrorInfo
 
 
 def _should_update_error_counter(bases: Iterable[type]) -> bool:

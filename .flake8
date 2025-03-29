@@ -42,9 +42,3 @@ select =
     F831,
     F901
 ignore = 
-
-[flake8:local-plugins]
-extension =
-    SIX = six_comaptablity_plugin:SixCompatibilityPlugin
-paths = 
-    ./

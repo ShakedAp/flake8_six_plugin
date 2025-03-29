@@ -2,20 +2,22 @@
 import ast
 from typing import Dict, Tuple, Iterable
 
-from flake8_errors_info import SIXErrorInfo
-from six_checkers.six_checker import SixChecker
-from six_checkers.enforcements_checkers import OpenEncodingChecker
-from six_checkers.unallowed_name_checkers import (
+from flake8_six_compatablity_plugin.flake8_errors_info import SIXErrorInfo
+from flake8_six_compatablity_plugin.six_checkers.six_checker import SixChecker
+from flake8_six_compatablity_plugin.six_checkers.enforcements_checkers import (
+    OpenEncodingChecker,
+)
+from flake8_six_compatablity_plugin.six_checkers.unallowed_name_checkers import (
     InternNotAllowedChecker,
     ReloadNotAllowedChecker,
     CoerceNotAllowedChecker,
     CoerceMethodNotAllowedChecker,
 )
-from six_checkers.constant_checkers import (
+from flake8_six_compatablity_plugin.six_checkers.constant_checkers import (
     UnspecifiedStringPrefix,
     FStringsNotAllowedChecker,
 )
-from six_checkers.deprecated_import_checkers import (
+from flake8_six_compatablity_plugin.six_checkers.deprecated_import_checkers import (
     UnallowedAttributesStringImportChecker,
     UnallowedAttributesStringAccessChecker,
     UnallowedStringImportRenameChecker,
@@ -23,7 +25,7 @@ from six_checkers.deprecated_import_checkers import (
     UnallowedAttributesSysAccessChecker,
     UnallowedSysImportRenameChecker,
 )
-from six_checkers.await_async_checkers import (
+from flake8_six_compatablity_plugin.six_checkers.await_async_checkers import (
     AsyncNotAllowedChecker,
     AwaitNotAllowedChecker,
 )

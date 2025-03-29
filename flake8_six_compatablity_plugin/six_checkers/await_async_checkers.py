@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import ast
 
-from six_checkers.six_checker import SixChecker
-from flake8_errors_info import SIXErrorInfo
+from flake8_six_compatablity_plugin.six_checkers.six_checker import SixChecker
+from flake8_six_compatablity_plugin.flake8_errors_info import SIXErrorInfo
 
 
 class AsyncNotAllowedChecker(SixChecker):

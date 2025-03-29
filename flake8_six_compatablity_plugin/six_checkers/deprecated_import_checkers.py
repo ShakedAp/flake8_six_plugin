@@ -2,8 +2,8 @@
 import ast
 import abc
 
-from flake8_errors_info import SIXErrorInfo
-from six_checkers.six_checker import SixChecker
+from flake8_six_compatablity_plugin.flake8_errors_info import SIXErrorInfo
+from flake8_six_compatablity_plugin.six_checkers.six_checker import SixChecker
 
 STRING_MODULE_NAME = "string"
 # found using common values betweem vars(str).keys() and vars(string).keys() in python2
@@ -81,8 +81,9 @@ class UnallowedAttributesModuleAccessChecker(abc.ABC, SixChecker):
             node (ast.Attribute): The ast statement to check
             errors (list[SIXErrorInfo]): The error to be updated with found errors.
         """
-        if node.value.id == cls.module_name and node.attr in cls.module_attributes:
-            errors.append(cls._create_six_error(node.value))
+        if isinstance(node.value, ast.Name):
+            if node.value.id == cls.module_name and node.attr in cls.module_attributes:
+                errors.append(cls._create_six_error(node.value))
 
 
 class UnallowedModuleImportRenameChecker(abc.ABC, SixChecker):
