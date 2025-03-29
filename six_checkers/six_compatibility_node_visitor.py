@@ -15,6 +15,14 @@ from six_checkers.constant_checkers import (
     UnspecifiedStringPrefix,
     FStringsNotAllowedChecker,
 )
+from six_checkers.deprecated_import_checkers import (
+    UnallowedAttributesStringImportChecker,
+    UnallowedAttributesStringAccessChecker,
+    UnallowedStringImportRenameChecker,
+    UnallowedAttributesSysImportChecker,
+    UnallowedAttributesSysAccessChecker,
+    UnallowedSysImportRenameChecker,
+)
 from six_checkers.await_async_checkers import (
     AsyncNotAllowedChecker,
     AwaitNotAllowedChecker,
@@ -87,6 +95,15 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
             ReloadNotAllowedChecker,
             CoerceNotAllowedChecker,
             OpenEncodingChecker,
+        ),
+        "Import": (UnallowedStringImportRenameChecker, UnallowedSysImportRenameChecker),
+        "ImportFrom": (
+            UnallowedAttributesStringImportChecker,
+            UnallowedAttributesSysImportChecker,
+        ),
+        "Attribute": (
+            UnallowedAttributesStringAccessChecker,
+            UnallowedAttributesSysAccessChecker,
         ),
         "FunctionDef": (CoerceMethodNotAllowedChecker,),
         "Constant": (UnspecifiedStringPrefix,),
