@@ -4,6 +4,7 @@ from typing import Dict, Tuple, Iterable
 
 from flake8_errors_info import SIXErrorInfo
 from six_checkers.six_checker import SixChecker
+from six_checkers.enforcements_checkers import OpenEncodingChecker
 from six_checkers.unallowed_name_checkers import (
     InternNotAllowedChecker,
     ReloadNotAllowedChecker,
@@ -85,6 +86,7 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
             InternNotAllowedChecker,
             ReloadNotAllowedChecker,
             CoerceNotAllowedChecker,
+            OpenEncodingChecker,
         ),
         "FunctionDef": (CoerceMethodNotAllowedChecker,),
         "Constant": (UnspecifiedStringPrefix,),
