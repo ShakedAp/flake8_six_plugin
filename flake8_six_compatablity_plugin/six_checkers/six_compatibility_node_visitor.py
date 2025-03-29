@@ -7,6 +7,7 @@ from flake8_six_compatablity_plugin.six_checkers.six_checker import SixChecker
 from flake8_six_compatablity_plugin.six_checkers.enforcements_checkers import (
     OpenEncodingChecker,
     ClassInheritanceChecker,
+    DivisionSpecialMethodsChecker,
 )
 from flake8_six_compatablity_plugin.six_checkers.unallowed_name_checkers import (
     InternNotAllowedChecker,
@@ -128,7 +129,7 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
             UnallowedAttributesSysAccessChecker,
         ),
         "FunctionDef": (CoerceMethodNotAllowedChecker,),
-        "ClassDef": (ClassInheritanceChecker,),
+        "ClassDef": (ClassInheritanceChecker, DivisionSpecialMethodsChecker),
         "Constant": (UnspecifiedStringPrefix, EllipsisNotAllowedChecker),
         "JoinedStr": (FStringsNotAllowedChecker,),
         "Await": (AwaitNotAllowedChecker,),
