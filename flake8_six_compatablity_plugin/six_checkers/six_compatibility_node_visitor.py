@@ -16,6 +16,7 @@ from flake8_six_compatablity_plugin.six_checkers.unallowed_name_checkers import 
 from flake8_six_compatablity_plugin.six_checkers.constant_checkers import (
     UnspecifiedStringPrefix,
     FStringsNotAllowedChecker,
+    EllipsisNotAllowedChecker,
 )
 from flake8_six_compatablity_plugin.six_checkers.deprecated_import_checkers import (
     UnallowedAttributesStringImportChecker,
@@ -108,7 +109,7 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
             UnallowedAttributesSysAccessChecker,
         ),
         "FunctionDef": (CoerceMethodNotAllowedChecker,),
-        "Constant": (UnspecifiedStringPrefix,),
+        "Constant": (UnspecifiedStringPrefix, EllipsisNotAllowedChecker),
         "JoinedStr": (FStringsNotAllowedChecker,),
         "Await": (AwaitNotAllowedChecker,),
         "AsyncFunctionDef": (AsyncNotAllowedChecker,),

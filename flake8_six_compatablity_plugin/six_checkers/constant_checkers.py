@@ -49,3 +49,24 @@ class FStringsNotAllowedChecker(SixChecker):
             errors (list[SIXErrorInfo]): The error to be updated with found errors.
         """
         errors.append(cls._create_six_error(node))
+
+
+class EllipsisNotAllowedChecker(SixChecker):
+    """
+    Six Checker that checks that no ellipsis are used.
+    """
+
+    error_message = "Ellipsis is not allowed - they are not python2 compatible"
+
+    @classmethod
+    def check(cls, node: ast.Constant, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.Constant): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
+        if node.value is Ellipsis:
+            errors.append(cls._create_six_error(node))

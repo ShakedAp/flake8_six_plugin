@@ -9,7 +9,7 @@ from flake8_six_compatablity_plugin.flake8_errors_info import SIXErrorInfo
 def _should_update_error_counter(bases: Iterable[type]) -> bool:
     """
     Args:
-        bases (Iterable[type]): the clas ases to check.
+        bases (Iterable[type]): the classes to check.
 
     Returns:
         bool: True if error counter should be updated, False otherwise.

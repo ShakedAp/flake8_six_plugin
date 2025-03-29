@@ -1,2 +1,3 @@
 **/__pycache__/**
+flake8_six_compatablity_plugin.egg-info
 test.py
