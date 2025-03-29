@@ -24,7 +24,6 @@ select =
     W6,
     # Imports
     F402,
-    F403, # reconsider
     F404,
     F406,
     F407,
