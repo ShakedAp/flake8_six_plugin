@@ -31,6 +31,24 @@ from flake8_six_compatablity_plugin.six_checkers.await_async_checkers import (
     AsyncNotAllowedChecker,
     AwaitNotAllowedChecker,
 )
+from flake8_six_compatablity_plugin.six_checkers.unallowed_statements_checker import (
+    AnnAssignNotAllowed,
+    AsyncForNotAllowed,
+    AsyncWithNotAllowed,
+    MatchNotAllowed,
+    NonlocalNotAllowed,
+    NamedExprNotAllowed,
+    YieldFromNotAllowed,
+    MatchValueNotAllowed,
+    MatchSingletonNotAllowed,
+    MatchSequenceNotAllowed,
+    MatchMappingNotAllowed,
+    MatchClassNotAllowed,
+    MatchStarNotAllowed,
+    MatchAsNotAllowed,
+    MatchOrNotAllowed,
+    NameConstantNotAllowed,
+)
 
 
 NODE_VISITOR_VISIT_METHOD_FORMAT = "visit_{}"
@@ -115,6 +133,22 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
         "JoinedStr": (FStringsNotAllowedChecker,),
         "Await": (AwaitNotAllowedChecker,),
         "AsyncFunctionDef": (AsyncNotAllowedChecker,),
+        "AnnAssign": (AnnAssignNotAllowed,),
+        "AsyncFor": (AsyncForNotAllowed,),
+        "AsyncWith": (AsyncWithNotAllowed,),
+        "Match": (MatchNotAllowed,),
+        "Nonlocal": (NonlocalNotAllowed,),
+        "NamedExpr": (NamedExprNotAllowed,),
+        "YieldFrom": (YieldFromNotAllowed,),
+        "MatchValue": (MatchValueNotAllowed,),
+        "MatchSingleton": (MatchSingletonNotAllowed,),
+        "MatchSequence": (MatchSequenceNotAllowed,),
+        "MatchMapping": (MatchMappingNotAllowed,),
+        "MatchClass": (MatchClassNotAllowed,),
+        "MatchStar": (MatchStarNotAllowed,),
+        "MatchAs": (MatchAsNotAllowed,),
+        "MatchOr": (MatchOrNotAllowed,),
+        "NameConstant": (NameConstantNotAllowed,),
     }
 
     def __init__(self):
