@@ -12,7 +12,7 @@ class OpenEncodingChecker(SixChecker):
     example: open('name', encoding='utf-8')
     """
 
-    error_message = "all open calls must specify the encoding"
+    error_message = "all open calls must specify the encoding, or open in byte mode"
 
     @classmethod
     def check(cls, node: ast.Call, errors: list[SIXErrorInfo]) -> None:
@@ -25,9 +25,48 @@ class OpenEncodingChecker(SixChecker):
             errors (list[SIXErrorInfo]): The error to be updated with found errors.
         """
         if isinstance(node.func, ast.Name) and node.func.id == "open":
+            if len(node.args) > 1 and isinstance(node.args[1], ast.Constant):
+                encoding = node.args[1].value
+                if isinstance(encoding, str) and "b" in encoding:
+                    return
+
             keyword_names = [keyword.arg for keyword in node.keywords]
             if "encoding" not in keyword_names:
-                errors.append(cls._create_six_error(node))
+                errors.append(cls._create_six_error(node.func))
+
+
+class OpenCallValidChecker(SixChecker):
+    """
+    Six Checker that checks that all the calls to open are valid.
+    example: open('name', encoding='utf-8')
+    """
+
+    error_message = "open call is invalid - mode should be unicode and encoding must be used when byte mode is not present"
+
+    @classmethod
+    def check(cls, node: ast.Call, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.Call): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
+        if isinstance(node.func, ast.Name) and node.func.id == "open":
+            keyword_names = {keyword.arg: keyword for keyword in node.keywords}
+
+            if len(node.args) > 1 and isinstance(node.args[1], ast.Constant):
+                encoding = node.args[1].value
+                if not isinstance(encoding, str):
+                    errors.append(cls._create_six_error(node.args[1]))
+
+                if (
+                    isinstance(encoding, str)
+                    and "b" in encoding
+                    and "encoding" in keyword_names
+                ):
+                    errors.append(cls._create_six_error(keyword_names["encoding"]))
 
 
 class ClassInheritanceChecker(SixChecker):

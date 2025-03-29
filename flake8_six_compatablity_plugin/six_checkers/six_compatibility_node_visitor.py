@@ -6,6 +6,7 @@ from flake8_six_compatablity_plugin.flake8_errors_info import SIXErrorInfo
 from flake8_six_compatablity_plugin.six_checkers.six_checker import SixChecker
 from flake8_six_compatablity_plugin.six_checkers.enforcements_checkers import (
     OpenEncodingChecker,
+    OpenCallValidChecker,
     ClassInheritanceChecker,
     DivisionSpecialMethodsChecker,
 )
@@ -118,6 +119,7 @@ class SixCompatibilityNodeVisitor(ast.NodeVisitor, metaclass=NodeCheckerAdderMet
             ReloadNotAllowedChecker,
             CoerceNotAllowedChecker,
             OpenEncodingChecker,
+            OpenCallValidChecker,
         ),
         "Import": (UnallowedStringImportRenameChecker, UnallowedSysImportRenameChecker),
         "ImportFrom": (

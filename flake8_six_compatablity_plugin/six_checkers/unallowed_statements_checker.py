@@ -29,6 +29,18 @@ class AnnAssignNotAllowed(StatementNotAllowed):
         "Annotation Assignment is not allowed - it is not supported in python2"
     )
 
+    @classmethod
+    def check(cls, node: ast.AnnAssign, errors: list[SIXErrorInfo]) -> None:
+        """
+        Check that the given node is valid.
+        If it is not valid, create the relevant error info and update errors.
+
+        Args:
+            node (ast.AnnAssign): The ast statement to check
+            errors (list[SIXErrorInfo]): The error to be updated with found errors.
+        """
+        errors.append(cls._create_six_error(node.annotation))
+
 
 class AsyncForNotAllowed(StatementNotAllowed):
     error_message = "Async For is not allowed - it is not supported in python2"
