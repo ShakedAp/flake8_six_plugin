@@ -24,6 +24,7 @@ class UnspecifiedStringPrefix(SixChecker):
             node (ast.Constant): The ast statement to check
             errors (list[SIXErrorInfo]): The error to be updated with found errors.
         """
+        return # Currently disabled
         if isinstance(node.value, str) and node.kind is None:
             errors.append(cls._create_six_error(node))
 
